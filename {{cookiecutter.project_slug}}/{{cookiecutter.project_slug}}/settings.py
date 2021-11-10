@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -206,9 +207,14 @@ REST_AUTH_SERIALIZERS = {
     "PASSWORD_RESET_SERIALIZER": "users.api.v1.serializers.PasswordResetSerializer",
 }
 
+# JWT
+
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = "jwt-auth"
 JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+}
 
 
 # Swagger
