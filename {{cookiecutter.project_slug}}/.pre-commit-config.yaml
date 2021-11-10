@@ -32,24 +32,6 @@ repos:
       - id: flake8
         additional_dependencies: [flake8-isort]
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.910-1
-    hooks:
-    - id: mypy
-      args: [--no-strict-optional, --ignore-missing-imports]
-      additional_dependencies: [
-        django-stubs,
-        djangorestframework-stubs,
-        django-environ,
-        django-cors-headers,
-        django-allauth,
-        django-extensions,
-        drf-yasg,
-        django-extensions,
-        dj-rest-auth,
-        psycopg2,
-      ]
-
 ci:
     autoupdate_schedule: weekly
     skip: []
