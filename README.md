@@ -22,7 +22,6 @@ A Django template to jumpstart your Django projects using cookiecutter. [Cookiec
 - Default integration with [`pre-commit`](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
   - [`isort`](https://github.com/timothycrosley/isort) for sorting imports
   - [`black`](https://github.com/psf/black) and [`flake8`](https://gitlab.com/pycqa/flake8) for coding style and standards
-  - [`mypy`](https://mypy.readthedocs.io) for static typing
 
 ## Usage
 
