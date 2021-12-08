@@ -6,7 +6,7 @@ authors = ["Lorence Lim <jlorencelim@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-Django = "^3.2.9"
+Django = "^4.0"
 django-allauth = "^0.46.0"
 django-cors-headers = "^3.10.1"
 django-environ = "^0.8.1"
