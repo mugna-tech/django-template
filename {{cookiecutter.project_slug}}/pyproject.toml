@@ -26,7 +26,7 @@ coverage = {version = "^6.2", extras = ["toml"]}
 django-coverage-plugin = "^2.0.2"
 factory-boy = "^3.2.1"
 ipdb = "^0.13.9"
-pre-commit = "^2.15.0"
+pre-commit = "^2.16.0"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 pytest-django = "^4.5.2"
