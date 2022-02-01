@@ -22,7 +22,7 @@ whitenoise = "^5.3.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1"
-coverage = {version = "^6.2", extras = ["toml"]}
+coverage = {version = "^6.3", extras = ["toml"]}
 django-coverage-plugin = "^2.0.2"
 factory-boy = "^3.2.1"
 ipdb = "^0.13.9"
