@@ -241,7 +241,7 @@ with_social = ["django-allauth (>=0.40.0,<0.45.0)"]
 
 [[package]]
 name = "django"
-version = "4.0"
+version = "4.0.2"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -1248,8 +1248,8 @@ dj-rest-auth = [
     {file = "dj-rest-auth-2.1.11.tar.gz", hash = "sha256:97290a3c98e5aa369cdb0d660a23f0f665d622ccc5ba25d1ab35888714be07c9"},
 ]
 django = [
-    {file = "Django-4.0-py3-none-any.whl", hash = "sha256:59304646ebc6a77b9b6a59adc67d51ecb03c5e3d63ed1f14c909cdfda84e8010"},
-    {file = "Django-4.0.tar.gz", hash = "sha256:d5a8a14da819a8b9237ee4d8c78dfe056ff6e8a7511987be627192225113ee75"},
+    {file = "Django-4.0.2-py3-none-any.whl", hash = "sha256:996495c58bff749232426c88726d8cd38d24c94d7c1d80835aafffa9bc52985a"},
+    {file = "Django-4.0.2.tar.gz", hash = "sha256:110fb58fb12eca59e072ad59fc42d771cd642dd7a2f2416582aa9da7a8ef954a"},
 ]
 django-allauth = [
     {file = "django-allauth-0.46.0.tar.gz", hash = "sha256:8217b8dc46f85812ff209fc542f4bf378f1751cdbe867008169d4c85685df50d"},
