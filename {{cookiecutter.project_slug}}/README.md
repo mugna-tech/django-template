@@ -1,6 +1,55 @@
-# {{ cookiecutter.project_description }}
+# {{ cookiecutter.project_slug }}
 
-This repository is used for the backend of the {{ cookiecutter.project_description }} App developed using Django.
+This repository is used for the backend of the {{ cookiecutter.project_slug }} App developed using Django.
+
+## Docker Setup
+To run this project in a Docker it is assumed you have a setup [Docker Compose](https://docs.docker.com/compose/).
+
+**Install Docker:**
+   - Linux - [get.docker.com](https://get.docker.com/)
+   - Windows or MacOS - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+1. Open CLI and CD to project root.
+2. Clone this repo and `git clone git@github.com:mugna-tech/{{ cookiecutter.project_slug }}.git`
+3. Go to project folder where manage.py is located. 
+4. Execute `docker-compose up --build` This will build the docker container.
+5. `docker exec -it {{ cookiecutter.project_slug }} python manage.py migrate`
+6. `docker exec -it {{ cookiecutter.project_slug }} python manage.py createsuperuser`
+
+### Docker Notes:
+You will only execute `docker-compose up --build` if you have changes in your Dockerfile. To start docker containers you can either use `docker-compose up` or `docker-compose start`
+
+**Docker Django Environments**
+1. To add or use different environment values copy `docker-compose.override.yml.example` and rename it to `docker-compose.override.yml`
+and change or add environment variables needed.
+2. Add a `.env` file in your project root. 
+
+Any changes in the environment variable will need to re-execute the `docker-compose up`
+
+**To add package to poetry**
+```sh
+docker exec -it {{ cookiecutter.project_slug }} poetry config virtualenvs.create false
+docker exec -it {{ cookiecutter.project_slug }} poetry add new_package_name
+```
+
+**Example of executing Django manage.py commands**
+```sh
+docker exec -it {{ cookiecutter.project_slug }} python manage.py shell
+docker exec -it {{ cookiecutter.project_slug }} python manage.py makemigrations
+docker exec -it {{ cookiecutter.project_slug }} python manage.py loaddata appname
+```
+
+**To copy site-packages installed by poetry from docker to your host machine**
+```sh
+docker cp {{ cookiecutter.project_slug }}:/usr/local/lib/python3.10/site-packages <path where you want to store the copy>
+```
+
+**DEBUG NOTES:**
+1. When adding PDB to your code you can interact with it in your CLI by executing `docker start -i {{ cookiecutter.project_slug }}`.
+2. If you experience this error in web docker container `port 5432 failed: FATAL:  the database system is starting up` -- automatically force restart the {{ cookiecutter.project_slug }} docker container by executing.
+```sh
+docker restart {{ cookiecutter.project_slug }}
+```
 
 ## Local Environment Setup
 

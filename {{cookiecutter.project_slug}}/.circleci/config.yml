@@ -1,0 +1,66 @@
+version: 3.2.2
+# Define the jobs we want to run for this project
+jobs:
+  build-and-test:
+    working_directory: ~/{{ cookiecutter.project_slug }}
+    docker:
+      - image: python:3.10
+        environment:
+          SECRET_KEY: Thi$IsMyT3$t$3cr3tK3y
+      - image: postgres:14
+        environment:
+          POSTGRES_USER: {{ cookiecutter.project_slug }}
+          POSTGRES_DB: {{ cookiecutter.project_slug }}
+          POSTGRES_PASSWORD: {{ cookiecutter.project_slug }}
+
+    steps:
+        - checkout
+        # - restore_cache:
+        #     keys:
+        #       - be-dependencies-{{ checksum "poetry.lock" }}
+        #       - be-dependencies-
+
+        - run:
+            name: Installing BE Requirements
+            command: |
+              cp .env.example .env
+              curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python
+              POETRY_VIRTUALENVS_CREATE=false /root/.local/bin/poetry install
+
+        # - save_cache:
+        #     paths:
+        #       - "~/.cache/pypoetry/virtualenvs/*/lib/python3.10/site-packages"
+        #     key: be-dependencies-{{ checksum "poetry.lock" }}
+
+        - run:
+            name: Running BE Test
+            command: |
+              python manage.py migrate
+              pytest
+
+
+  update-backend-staging:
+    docker:
+      - image: arvindr226/alpine-ssh
+    steps:
+      # Path specified below will depend where the project folder is saved in the server.
+      - run: ssh -oStrictHostKeyChecking=no -v $STAGINGUSER@$IPSTAGING "
+            sudo chown www-data:www-data -R /var/www/{{ cookiecutter.project_slug }}/{{ cookiecutter.project_slug }}/database-data/ &&
+            sudo -u www-data bash -c '
+                cd /var/www/{{ cookiecutter.project_slug }}/{{ cookiecutter.project_slug }} &&
+                git checkout develop && git pull && docker-compose down &&
+                docker-compose up --build -d &&
+                docker exec {{ cookiecutter.project_slug }} python manage.py migrate &&
+                docker exec {{ cookiecutter.project_slug }} python manage.py collectstatic --no-input'"
+
+# Main circleci config for Job flow.
+workflows:
+  version: 2
+  build-project:
+    jobs:
+      - build-and-test
+      - update-backend-staging:
+          filters:
+            branches:
+              only:
+                - develop
