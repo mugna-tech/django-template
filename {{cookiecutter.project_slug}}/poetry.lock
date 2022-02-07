@@ -221,7 +221,7 @@ python-versions = "*"
 
 [[package]]
 name = "dj-rest-auth"
-version = "2.2.2"
+version = "2.2.3"
 description = "Authentication and Registration in Django Rest Framework"
 category = "main"
 optional = false
@@ -1061,7 +1061,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c46a84e3d0396fb3009ddb860c1b41c8f4dff4908a1edbe891f79fe5eee2007b"
+content-hash = "35660c512c621d70c00d69a364bab375c65b0657e5b3472fb894df81d6cd9abf"
 
 [metadata.files]
 appnope = [
@@ -1271,7 +1271,7 @@ distlib = [
     {file = "distlib-0.3.3.zip", hash = "sha256:d982d0751ff6eaaab5e2ec8e691d949ee80eddf01a62eaa96ddb11531fe16b05"},
 ]
 dj-rest-auth = [
-    {file = "dj-rest-auth-2.2.2.tar.gz", hash = "sha256:fda25a777ac23bc2561f2579de5c45f058d0f1d27410469d5b321c353c4822ad"},
+    {file = "dj-rest-auth-2.2.3.tar.gz", hash = "sha256:f292f3dffb8fc896da10adf47e94a254fb8bf42e672a066e63566363d764ad42"},
 ]
 django = [
     {file = "Django-4.0.2-py3-none-any.whl", hash = "sha256:996495c58bff749232426c88726d8cd38d24c94d7c1d80835aafffa9bc52985a"},
