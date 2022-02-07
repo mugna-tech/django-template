@@ -192,3 +192,11 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Poetry
+# Poetry config file which is generated when you run poetry config <option> --local
+poetry.toml
+
+# Docker
+docker-compose.override.yml
+database-data/
