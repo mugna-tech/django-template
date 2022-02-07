@@ -1,6 +1,6 @@
-# {{ cookiecutter.project_slug }}
+# {{ cookiecutter.project_name }}
 
-This repository is used for the backend of the {{ cookiecutter.project_slug }} App developed using Django.
+This repository is used for the backend of the {{ cookiecutter.project_name }} App developed using Django.
 
 ## Docker Setup
 To run this project in a Docker it is assumed you have a setup [Docker Compose](https://docs.docker.com/compose/).

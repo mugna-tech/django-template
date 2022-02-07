@@ -15,6 +15,7 @@ jobs:
 
     steps:
         - checkout
+        # NOTE: This will improve test performance but sometimes causes error if packages are removed. This need more test
         # - restore_cache:
         #     keys:
         #       - be-dependencies-{{ checksum "poetry.lock" }}
@@ -27,6 +28,7 @@ jobs:
               curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python
               POETRY_VIRTUALENVS_CREATE=false /root/.local/bin/poetry install
 
+        # NOTE: Dependent on the above commented code.
         # - save_cache:
         #     paths:
         #       - "~/.cache/pypoetry/virtualenvs/*/lib/python3.10/site-packages"
