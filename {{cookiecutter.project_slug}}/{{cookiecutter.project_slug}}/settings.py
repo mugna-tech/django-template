@@ -222,6 +222,7 @@ SIMPLE_JWT = {
 
 SWAGGER_SETTINGS = {
     "DEFAULT_INFO": f"{ROOT_URLCONF}.api_info",
+    "USE_SESSION_AUTH": True,
 }
 
 
