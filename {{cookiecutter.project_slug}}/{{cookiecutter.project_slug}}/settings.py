@@ -34,6 +34,8 @@ DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = env.list("HOST", default=["*"])
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 if DEBUG:
     ALLOWED_HOSTS.append("*")
 
@@ -238,3 +240,11 @@ EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", None)
 
 if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# CORS
+
+CORS_ALLOWED_ORIGINS = env.list(
+    "CORS_ALLOWED_ORIGINS",
+    default=["http://127.0.0.1:3000", "http://localhost:3000"],
+)
