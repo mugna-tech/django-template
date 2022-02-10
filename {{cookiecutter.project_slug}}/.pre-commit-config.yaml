@@ -1,4 +1,4 @@
-exclude: 'migrations|.git'
+exclude: "migrations|.git"
 default_stages: [commit]
 
 repos:
@@ -6,7 +6,7 @@ repos:
     rev: v4.0.1
     hooks:
       - id: trailing-whitespace
-        exclude: '.md'
+        exclude: ".md"
       - id: end-of-file-fixer
       - id: check-yaml
 
@@ -20,11 +20,16 @@ repos:
     hooks:
       - id: black
 
-  - repo: git@github.com:humitos/mirrors-autoflake.git
+  - repo: https://github.com/humitos/mirrors-autoflake
     rev: v1.3
     hooks:
       - id: autoflake
-        args: ['--in-place', '--remove-all-unused-imports', '--remove-unused-variable']
+        args:
+          [
+            "--in-place",
+            "--remove-all-unused-imports",
+            "--remove-unused-variable",
+          ]
 
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.9.2
@@ -33,6 +38,6 @@ repos:
         additional_dependencies: [flake8-isort]
 
 ci:
-    autoupdate_schedule: weekly
-    skip: []
-    submodules: false
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false
