@@ -44,9 +44,9 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Swagger
 api_info = openapi.Info(
-    title="{{ cookiecutter.project_description }} API",
+    title="{{ cookiecutter.project_name }} API",
     default_version="v1",
-    description="API documentation for {{ cookiecutter.project_description }}",
+    description="API documentation for {{ cookiecutter.project_name }}",
 )
 
 schema_view = get_schema_view(
@@ -61,6 +61,6 @@ urlpatterns += [
 ]
 
 
-admin.site.site_header = "{{ cookiecutter.project_description }}"
-admin.site.site_title = "{{ cookiecutter.project_description }} Admin Portal"
-admin.site.index_title = "{{ cookiecutter.project_description }} Admin"
+admin.site.site_header = "{{ cookiecutter.project_name }}"
+admin.site.site_title = "{{ cookiecutter.project_name }} Admin Portal"
+admin.site.index_title = "{{ cookiecutter.project_name }} Admin"

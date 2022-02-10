@@ -7,7 +7,7 @@ A Django template to jumpstart your Django projects using cookiecutter. [Cookiec
 - Always `up-to-date` with the help of [`@dependabot`](https://dependabot.com/)
 - [`poetry`](https://github.com/python-poetry/poetry) for managing dependencies
 - Supports latest `python` 3.10+
-- Latest `Django` 3.2+
+- Latest `Django` 4.0+
 - [12-Factor](https://www.12factor.net/) based settings using [`django-environ`](https://github.com/joke2k/django-environ)
 - [`django-rest-framework`](https://github.com/encode/django-rest-framework) for building Web APIs
 - GraphQL like API using [`restql`](https://github.com/yezyilomo/django-restql)
@@ -41,7 +41,6 @@ Answer the prompts with your own desired options. For example:
 ```bash
 project_name [Mugna]: Mugna Tech
 project_slug [mugna_tech]: mugna
-project_description [A Mugna project.]: A Mugna Tech project.
 ```
 
 A new directory will be created with your project slug as the name.
