@@ -183,9 +183,10 @@ AUTHENTICATION_BACKENDS = (
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        # "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
@@ -214,12 +215,12 @@ REST_AUTH_SERIALIZERS = {
 
 # JWT
 
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = "jwt-auth"
-JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
-}
+# REST_USE_JWT = True
+# JWT_AUTH_COOKIE = "jwt-auth"
+# JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
+# SIMPLE_JWT = {
+#     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+# }
 
 
 # Swagger
