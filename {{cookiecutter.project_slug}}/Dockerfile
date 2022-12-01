@@ -1,6 +1,6 @@
 # Note regarding python-alpine:
 # https://dev.to/pmutua/the-best-docker-base-image-for-your-python-application-3o83
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /web
 

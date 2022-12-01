@@ -1,10 +1,10 @@
-version: 3.2.2
+version: 2.1
 # Define the jobs we want to run for this project
 jobs:
   build-and-test:
     working_directory: ~/{{ cookiecutter.project_slug }}
     docker:
-      - image: python:3.10
+      - image: python:3.11
         environment:
           SECRET_KEY: Thi$IsMyT3$t$3cr3tK3y
       - image: postgres:14
@@ -18,7 +18,7 @@ jobs:
         # NOTE: This will improve test performance but sometimes causes error if packages are removed. This need more test
         # - restore_cache:
         #     keys:
-        #       - be-dependencies-{{ checksum "poetry.lock" }}
+        #       - be-dependencies-\{\{ checksum "poetry.lock" \}\}
         #       - be-dependencies-
 
         - run:
@@ -31,8 +31,8 @@ jobs:
         # NOTE: Dependent on the above commented code.
         # - save_cache:
         #     paths:
-        #       - "~/.cache/pypoetry/virtualenvs/*/lib/python3.10/site-packages"
-        #     key: be-dependencies-{{ checksum "poetry.lock" }}
+        #       - "~/.cache/pypoetry/virtualenvs/*/lib/python3.11/site-packages"
+        #     key: be-dependencies-\{\{ checksum "poetry.lock" \}\}
 
         - run:
             name: Running BE Test

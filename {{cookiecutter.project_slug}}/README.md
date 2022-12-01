@@ -41,7 +41,7 @@ docker exec -it {{ cookiecutter.project_slug }} python manage.py loaddata appnam
 
 **To copy site-packages installed by poetry from docker to your host machine**
 ```sh
-docker cp {{ cookiecutter.project_slug }}:/usr/local/lib/python3.10/site-packages <path where you want to store the copy>
+docker cp {{ cookiecutter.project_slug }}:/usr/local/lib/python3.11/site-packages <path where you want to store the copy>
 ```
 
 **DEBUG NOTES:**
@@ -55,7 +55,7 @@ docker restart {{ cookiecutter.project_slug }}
 
 ### Required Installations
 
-1. [Python 3.10](https://www.python.org/downloads/)  
+1. [Python 3.11](https://www.python.org/downloads/)  
     On macOS (with Homebrew): `brew install python3`
 2. [Poetry 1.1.11](https://python-poetry.org/docs/#installation)  
     `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -`
@@ -97,7 +97,7 @@ CREATE DATABASE {{ cookiecutter.project_slug }} owner {{ cookiecutter.project_sl
 ## Running the App
 
 1. `poetry shell`  
-    If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug }}"-2wVcCnjv-py3.10)`.
+    If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug }}"-2wVcCnjv-py3.11)`.
 2. `./manage.py runserver`
 
 ## Running the Tests
