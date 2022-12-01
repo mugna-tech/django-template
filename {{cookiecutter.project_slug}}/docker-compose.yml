@@ -4,8 +4,6 @@ services:
         container_name: {{ cookiecutter.project_slug }}_web
         tty: true
         stdin_open: true
-        depends_on:
-            - "{{ cookiecutter.project_slug }}_db"
         build:
           context: .
         restart: always
