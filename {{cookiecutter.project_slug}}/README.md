@@ -58,7 +58,7 @@ docker restart {{ cookiecutter.project_slug }}
 1. [Python 3.11](https://www.python.org/downloads/)  
     On macOS (with Homebrew): `brew install python3`
 2. [Poetry 1.1.11](https://python-poetry.org/docs/#installation)  
-    `curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -`
+    `curl -sSL https://install.python-poetry.org | python3 -`
 3. [PostgreSQL 14.0](https://www.postgresql.org/download/)  
     On macOS (with Homebrew): `brew install postgres`
 
