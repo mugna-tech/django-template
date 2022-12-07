@@ -13,8 +13,8 @@ To run this project in a Docker it is assumed you have a setup [Docker Compose](
 2. Clone this repo and `git clone git@github.com:mugna-tech/{{ cookiecutter.project_slug }}.git`
 3. Go to project folder where manage.py is located. 
 4. Execute `docker-compose up --build` This will build the docker container.
-5. `docker exec -it {{ cookiecutter.project_slug }} python manage.py migrate`
-6. `docker exec -it {{ cookiecutter.project_slug }} python manage.py createsuperuser`
+5. `docker exec -it {{ cookiecutter.project_slug }}_web python manage.py migrate`
+6. `docker exec -it {{ cookiecutter.project_slug }}_web python manage.py createsuperuser`
 
 ### Docker Notes:
 You will only execute `docker-compose up --build` if you have changes in your Dockerfile. To start docker containers you can either use `docker-compose up` or `docker-compose start`
@@ -28,15 +28,15 @@ Any changes in the environment variable will need to re-execute the `docker-comp
 
 **To add package to poetry**
 ```sh
-docker exec -it {{ cookiecutter.project_slug }} poetry config virtualenvs.create false
-docker exec -it {{ cookiecutter.project_slug }} poetry add new_package_name
+docker exec -it {{ cookiecutter.project_slug }}_web poetry config virtualenvs.create false
+docker exec -it {{ cookiecutter.project_slug }}_web poetry add new_package_name
 ```
 
 **Example of executing Django manage.py commands**
 ```sh
-docker exec -it {{ cookiecutter.project_slug }} python manage.py shell
-docker exec -it {{ cookiecutter.project_slug }} python manage.py makemigrations
-docker exec -it {{ cookiecutter.project_slug }} python manage.py loaddata appname
+docker exec -it {{ cookiecutter.project_slug }}_web python manage.py shell
+docker exec -it {{ cookiecutter.project_slug }}_web python manage.py makemigrations
+docker exec -it {{ cookiecutter.project_slug }}_web python manage.py loaddata appname
 ```
 
 **To copy site-packages installed by poetry from docker to your host machine**
@@ -45,10 +45,10 @@ docker cp {{ cookiecutter.project_slug }}:/usr/local/lib/python3.11/site-package
 ```
 
 **DEBUG NOTES:**
-1. When adding PDB to your code you can interact with it in your CLI by executing `docker start -i {{ cookiecutter.project_slug }}`.
-2. If you experience this error in web docker container `port 5432 failed: FATAL:  the database system is starting up` -- automatically force restart the {{ cookiecutter.project_slug }} docker container by executing.
+1. When adding PDB to your code you can interact with it in your CLI by executing `docker start -i {{ cookiecutter.project_slug }}_web`.
+2. If you experience this error in web docker container `port 5432 failed: FATAL:  the database system is starting up` -- automatically force restart the {{ cookiecutter.project_slug }}_web docker container by executing.
 ```sh
-docker restart {{ cookiecutter.project_slug }}
+docker restart {{ cookiecutter.project_slug }}_web
 ```
 
 ## Local Environment Setup
