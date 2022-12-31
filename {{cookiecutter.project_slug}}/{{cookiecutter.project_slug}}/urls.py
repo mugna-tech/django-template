@@ -12,13 +12,27 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path("api/v1/auth/", include("dj_rest_auth.urls")),
-    path("api/v1/auth/registration/account-confirm-email/<str:key>/", confirm_email),
-    path("api/v1/auth/registration/", include("dj_rest_auth.registration.urls")),
+
     path(
         "password/reset/confirm/<uidb64>/<token>/",
         TemplateView.as_view(template_name="accounts/password_reset_confirm.html"),
         name="password_reset_confirm",
+    ),
+
+    # v1 APIs
+    path(
+        "api/v1/",
+        include(
+            (
+                [
+                    path("auth/", include("dj_rest_auth.urls")),
+                    path("auth/registration/account-confirm-email/<str:key>/", confirm_email),
+                    path("auth/registration/", include("dj_rest_auth.registration.urls")),
+                ],
+                "v1",
+            ),
+            namespace="v1",
+        ),
     ),
 ]
 
