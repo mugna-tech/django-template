@@ -68,6 +68,7 @@ use_parentheses = true
 omit = [
     "*migrations*",
     "*tests*",
+    "*staticfiles*",
     "*__init__.py",
     "{{ cookiecutter.project_slug }}/*",
     "conftest.py",
@@ -79,6 +80,7 @@ plugins = ["django_coverage_plugin"]
 omit = [
     "*migrations*",
     "*tests*",
+    "*staticfiles*",
     "*__init__.py",
     "{{ cookiecutter.project_slug }}/*",
     "conftest.py",
