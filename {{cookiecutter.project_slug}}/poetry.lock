@@ -269,7 +269,7 @@ Django = ">=3.2"
 
 [[package]]
 name = "django-coverage-plugin"
-version = "2.0.4"
+version = "3.0.0"
 description = "Django template coverage.py plugin"
 category = "dev"
 optional = false
@@ -277,7 +277,6 @@ python-versions = "*"
 
 [package.dependencies]
 coverage = "*"
-six = ">=1.4.0"
 
 [[package]]
 name = "django-environ"
@@ -1101,7 +1100,7 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "2ab06024cf22d413fd850d9474560a5b442e8232679ac35406f06e2faa914425"
+content-hash = "cdc0f94d18b24f226d35cef6b4bb9dc8d07c51921d6970f697612d90a6cf2bc2"
 
 [metadata.files]
 appnope = [
@@ -1348,8 +1347,8 @@ django-cors-headers = [
     {file = "django_cors_headers-3.13.0-py3-none-any.whl", hash = "sha256:37e42883b5f1f2295df6b4bba96eb2417a14a03270cb24b2a07f021cd4487cf4"},
 ]
 django-coverage-plugin = [
-    {file = "django_coverage_plugin-2.0.4-py3-none-any.whl", hash = "sha256:3b0aa1ed26b52c5844c88510995f4a4b60b4fb0679970d11f82654bb8a2bd16a"},
-    {file = "django_coverage_plugin-2.0.4.tar.gz", hash = "sha256:f662efe592bf98baf2e540312059c918daa8d8379244a2a6b6f984c4a1dda015"},
+    {file = "django_coverage_plugin-3.0.0-py3-none-any.whl", hash = "sha256:245ecd6e91e5be7a66e0f811fd57091c46b55c0eb85c7fe1a1e4aebca9842a5f"},
+    {file = "django_coverage_plugin-3.0.0.tar.gz", hash = "sha256:c063d8d49ba2da30fe95d91cf3f0f9f659b55c3f80d4a029d619b2b3144b1206"},
 ]
 django-environ = [
     {file = "django-environ-0.8.1.tar.gz", hash = "sha256:6f0bc902b43891656b20486938cba0861dc62892784a44919170719572a534cb"},

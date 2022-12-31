@@ -24,7 +24,7 @@ uvicorn = "^0.20.0"
 [tool.poetry.dev-dependencies]
 black = "^22.10"
 coverage = {version = "^6.5", extras = ["toml"]}
-django-coverage-plugin = "^2.0.4"
+django-coverage-plugin = "^3.0.0"
 factory-boy = "^3.2.1"
 ipdb = "^0.13.9"
 pre-commit = "^2.20.0"
