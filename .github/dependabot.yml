@@ -4,4 +4,3 @@ updates:
     directory: "/{{cookiecutter.project_slug}}"
     schedule:
       interval: "weekly"
-    target-branch: "main"
