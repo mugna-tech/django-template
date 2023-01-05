@@ -43,16 +43,11 @@ INSTALLED_APPS = [
 ]
 
 
-LOCAL_APPS = [
-    "core",
-    "users",
-]
-
 THIRD_PARTY_APPS = [
-    "corsheaders",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "corsheaders",
     "django_extensions",
     "drf_yasg",
     "dj_rest_auth",
@@ -61,7 +56,12 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
 ]
 
-INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS
+LOCAL_APPS = [
+    "core",
+    "users",
+]
+
+INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
 
 MIDDLEWARE = [
