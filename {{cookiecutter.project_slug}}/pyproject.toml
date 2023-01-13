@@ -18,7 +18,7 @@ dj-rest-auth = "^2.2.6"
 drf-yasg = "^1.21.4"
 Pillow = "^9.4.0"
 psycopg2-binary = "^2.9.5"
-whitenoise = "^6.2.0"
+whitenoise = "^6.3.0"
 uvicorn = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
