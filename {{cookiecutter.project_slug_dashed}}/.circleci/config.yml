@@ -2,16 +2,16 @@ version: 2.1
 # Define the jobs we want to run for this project
 jobs:
   build-and-test:
-    working_directory: ~/{{ cookiecutter.project_slug }}
+    working_directory: ~/{{ cookiecutter.project_slug_snaked }}
     docker:
       - image: python:3.11
         environment:
           SECRET_KEY: Thi$IsMyT3$t$3cr3tK3y
       - image: postgres:14
         environment:
-          POSTGRES_USER: {{ cookiecutter.project_slug }}
-          POSTGRES_DB: {{ cookiecutter.project_slug }}
-          POSTGRES_PASSWORD: {{ cookiecutter.project_slug }}
+          POSTGRES_USER: {{ cookiecutter.project_slug_snaked }}
+          POSTGRES_DB: {{ cookiecutter.project_slug_snaked }}
+          POSTGRES_PASSWORD: {{ cookiecutter.project_slug_snaked }}
 
     steps:
         - checkout
@@ -47,13 +47,13 @@ jobs:
     steps:
       # Path specified below will depend where the project folder is saved in the server.
       - run: ssh -oStrictHostKeyChecking=no -v $STAGINGUSER@$IPSTAGING "
-            sudo chown www-data:www-data -R /var/www/{{ cookiecutter.project_slug }}/{{ cookiecutter.project_slug }}/database-data/ &&
+            sudo chown www-data:www-data -R /var/www/{{ cookiecutter.project_slug_dashed }}/database-data/ &&
             sudo -u www-data bash -c '
-                cd /var/www/{{ cookiecutter.project_slug }}/{{ cookiecutter.project_slug }} &&
+                cd /var/www/{{ cookiecutter.project_slug_dashed }} &&
                 git checkout develop && git pull && docker-compose down &&
                 docker-compose up --build -d &&
-                docker exec {{ cookiecutter.project_slug }} python manage.py migrate &&
-                docker exec {{ cookiecutter.project_slug }} python manage.py collectstatic --no-input'"
+                docker exec {{ cookiecutter.project_slug_snaked }} python manage.py migrate &&
+                docker exec {{ cookiecutter.project_slug_snaked }} python manage.py collectstatic --no-input'"
 
 # Main circleci config for Job flow.
 workflows:

@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+    {{ cookiecutter.project_slug_snaked }}_web:
+        container_name: {{ cookiecutter.project_slug_snaked }}_web
+        tty: true
+        stdin_open: true
+        build:
+          context: .
+        restart: always
+        volumes:
+            - .:/web
+        ports:
+            - 8000:8000
+        env_file: .env
+        command: bash -c "uvicorn {{ cookiecutter.project_slug_snaked }}.asgi:application --host 0.0.0.0 --port 8000"

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "{{ cookiecutter.project_slug }}"
+name = "{{ cookiecutter.project_slug_snaked }}"
 version = "0.1.0"
 description = "{{ cookiecutter.project_description }}"
 authors = ["Lorence Lim <jlorencelim@gmail.com>"]
@@ -40,7 +40,7 @@ build-backend = "poetry.core.masonry.api"
 
 # pytest
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "{{ cookiecutter.project_slug }}.settings"
+DJANGO_SETTINGS_MODULE = "{{ cookiecutter.project_slug_snaked }}.settings"
 
 
 # isort
@@ -70,7 +70,7 @@ omit = [
     "*tests*",
     "*staticfiles*",
     "*__init__.py",
-    "{{ cookiecutter.project_slug }}/*",
+    "{{ cookiecutter.project_slug_snaked }}/*",
     "conftest.py",
     "manage.py",
 ]
@@ -82,7 +82,7 @@ omit = [
     "*tests*",
     "*staticfiles*",
     "*__init__.py",
-    "{{ cookiecutter.project_slug }}/*",
+    "{{ cookiecutter.project_slug_snaked }}/*",
     "conftest.py",
     "manage.py",
 ]

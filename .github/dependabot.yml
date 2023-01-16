@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/{{cookiecutter.project_slug}}"
+    directory: "/{{cookiecutter.project_slug_snaked}}"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
