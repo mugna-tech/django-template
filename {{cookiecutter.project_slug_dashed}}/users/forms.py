@@ -26,7 +26,7 @@ class AllAuthPasswordResetForm(AllAuthPasswordResetForm):
             protocol = request.scheme
 
             # change to use frontend reset password url if needed
-            url = f"{protocol}://{domain}/password/reset/{user_pk_to_url_str(user)}/{temp_key}"
+            url = f"{protocol}://{domain}/password/reset/?uid={user_pk_to_url_str(user)}&token={temp_key}"
 
             context = {
                 "current_site": current_site,
