@@ -6,30 +6,41 @@ authors = ["Lorence Lim <jlorencelim@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Django = "^4.1"
+{%- if cookiecutter.use_celery == "y" %}
+celery = "^5.3.1"
+{%- endif %}
+coreapi = "^2.3.3"
+Django = "^4.2"
+dj-rest-auth = "^2.2.8"
 django-allauth = "^0.52.0"
-django-cors-headers = "^3.13.0"
+{%- if cookiecutter.use_celery == "y" %}
+django-celery-beat = "^2.5.0"
+django-celery-results = "^2.5.1"
+{%- endif %}
+django-cors-headers = "^3.14.0"
 django-environ = "^0.8.1"
-django-extensions = "^3.2.1"
+django-extensions = "^3.2.3"
+{%- if cookiecutter.use_celery == "y" %}
+django-redis = "^5.3.0"
+{%- endif %}
 django-restql = "^0.15.3"
 djangorestframework = "^3.14.0"
 djangorestframework-simplejwt = "^5.2.2"
-dj-rest-auth = "^2.2.7"
-drf-yasg = "^1.21.4"
-Pillow = "^9.4.0"
-psycopg2-binary = "^2.9.5"
-whitenoise = "^6.3.0"
+drf-yasg = "^1.21.6"
+Pillow = "^9.5.0"
+psycopg2-binary = "^2.9.6"
 uvicorn = "^0.20.0"
+whitenoise = "^6.5.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.12"
 coverage = {version = "^7.0", extras = ["toml"]}
 django-coverage-plugin = "^3.0.0"
 factory-boy = "^3.2.1"
-ipdb = "^0.13.11"
+ipdb = "^0.13.13"
 pre-commit = "^2.21.0"
-pytest = "^7.2.1"
-pytest-cov = "^4.0.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
 pytest-django = "^4.5.2"
 pytest-factoryboy = "^2.5.1"
 

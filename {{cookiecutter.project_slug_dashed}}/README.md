@@ -100,6 +100,18 @@ CREATE DATABASE {{ cookiecutter.project_slug_snaked }} owner {{ cookiecutter.pro
     If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug_snaked }}"-2wVcCnjv-py3.11)`.
 2. `./manage.py runserver`
 
+{%- if cookiecutter.use_celery == "y" %}
+
+## Running the Celery Server  
+
+1. Make sure you have a Redis server running on localhost with the default port (6379). More information on how to setup [here](https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/)
+2. Set the `CELERY_BROKER_URL` env var to `redis://localhost:6379/0`
+3. `celery -A {{ cookiecutter.project_slug_snaked }} worker -l info`  
+    This starts a Celery worker that will process the background tasks.
+4. `celery -A {{ cookiecutter.project_slug_snaked }} beat -l info`  
+    This starts the Celery beat scheduler that will trigger the periodic tasks.
+{%- endif %}
+
 ## Running the Tests
 
 1. `poetry shell`

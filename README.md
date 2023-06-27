@@ -7,9 +7,10 @@ A Django template to jumpstart your Django projects using cookiecutter. [Cookiec
 - Always `up-to-date` with the help of [`@dependabot`](https://dependabot.com/)
 - [`poetry`](https://github.com/python-poetry/poetry) for managing dependencies
 - Supports latest `python` 3.11+
-- Latest `Django` 4.1+
+- Latest `Django` 4.2+
 - [12-Factor](https://www.12factor.net/) based settings using [`django-environ`](https://github.com/joke2k/django-environ)
 - [`django-rest-framework`](https://github.com/encode/django-rest-framework) for building Web APIs
+- [`django-celery`](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html) for background and periodic tasks (**optional)
 - GraphQL like API using [`restql`](https://github.com/yezyilomo/django-restql)
 - Authentication via [`django-allauth`](https://github.com/pennersr/django-allauth)
 - Token Authentication using [`simplejwt`](https://github.com/jazzband/djangorestframework-simplejwt)

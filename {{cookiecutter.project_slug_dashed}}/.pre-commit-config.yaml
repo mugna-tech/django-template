@@ -3,7 +3,7 @@ default_stages: [commit]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
         exclude: ".md"
@@ -11,17 +11,17 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.10.1
+    rev: 5.12.0
     hooks:
       - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 22.10.0
+    rev: 23.3.0
     hooks:
       - id: black
 
   - repo: https://github.com/PyCQA/autoflake
-    rev: v2.0.0
+    rev: v2.2.0
     hooks:
     -   id: autoflake
         args:

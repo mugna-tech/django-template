@@ -3,6 +3,7 @@ from datetime import timedelta
 from pathlib import Path
 
 import environ
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,6 +48,10 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+{%- if cookiecutter.use_celery == "y" %}
+    "django_celery_beat",
+    "django_celery_results",
+{%- endif %}
     "corsheaders",
     "django_extensions",
     "drf_yasg",
@@ -169,78 +174,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-# REST Framework
-
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-        # "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-}
-
-
-# Allauth
-
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = "optional"
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
-ACCOUNT_UNIQUE_EMAIL = True
-LOGIN_URL = "/login"
-LOGIN_REDIRECT_URL = "/"
-OLD_PASSWORD_FIELD_ENABLED = True
-
-
-# REST Auth
-
-REST_AUTH_SERIALIZERS = {
-    # Replace password reset serializer to fix 500 error
-    "PASSWORD_RESET_SERIALIZER": "users.api.v1.serializers.PasswordResetSerializer",
-}
-
-# JWT
-
-# REST_USE_JWT = True
-# JWT_AUTH_COOKIE = "jwt-auth"
-# JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
-# }
-
-
-# Swagger
-
-SWAGGER_SETTINGS = {
-    "DEFAULT_INFO": f"{ROOT_URLCONF}.api_info",
-}
-
-
-# Email
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", None)
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", None)
-
-if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-
-# CORS
-
-CORS_ALLOWED_ORIGINS = env.list(
-    "CORS_ALLOWED_ORIGINS",
-    default=["http://127.0.0.1:3000", "http://localhost:3000"],
-)
-
-
 # Logging
 # https://docs.djangoproject.com/en/4.1/topics/logging/
 
@@ -294,3 +227,86 @@ LOGGING = {
         },
     },
 }
+
+
+# REST Framework
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.BasicAuthentication",
+        # "rest_framework.authentication.TokenAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
+
+
+# Allauth
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_UNIQUE_EMAIL = True
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
+OLD_PASSWORD_FIELD_ENABLED = True
+
+
+# REST Auth
+
+REST_AUTH_SERIALIZERS = {
+    # Replace password reset serializer to fix 500 error
+    "PASSWORD_RESET_SERIALIZER": "users.api.v1.serializers.PasswordResetSerializer",
+}
+
+# JWT
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "jwt-auth"
+JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+}
+
+
+# Swagger
+
+SWAGGER_SETTINGS = {
+    "DEFAULT_INFO": f"{ROOT_URLCONF}.api_info",
+}
+
+
+# Email
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", None)
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", None)
+
+if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# CORS
+
+CORS_ALLOWED_ORIGINS = env.list(
+    "CORS_ALLOWED_ORIGINS",
+    default=["http://127.0.0.1:3000", "http://localhost:3000"],
+)
+
+{%- if cookiecutter.use_celery == "y" %}
+
+
+# Celery
+
+CELERY_BROKER_URL = env.str("CELERY_BROKER_URL", "redis://redis:6379/0")
+CELERY_RESULTS_BACKEND = "django-db"
+CELERY_CACHE_BACKEND = "django-cache"
+CELERY_BEAT_SCHEDULE = {}
+{%- endif %}

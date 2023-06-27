@@ -50,10 +50,27 @@ jobs:
             sudo chown www-data:www-data -R /var/www/{{ cookiecutter.project_slug_dashed }}/database-data/ &&
             sudo -u www-data bash -c '
                 cd /var/www/{{ cookiecutter.project_slug_dashed }} &&
-                git checkout develop && git pull && docker-compose down &&
+                git checkout develop && git pull &&
+                docker-compose down &&
                 docker-compose up --build -d &&
                 docker exec {{ cookiecutter.project_slug_snaked }} python manage.py migrate &&
                 docker exec {{ cookiecutter.project_slug_snaked }} python manage.py collectstatic --no-input'"
+
+    # update-backend-production:
+    #   docker:
+    #     - image: arvindr226/alpine-ssh
+    #   steps:
+    #     # Path specified below will depend where the project folder is saved in the server.
+    #     - run: ssh -oStrictHostKeyChecking=no -v $STAGINGUSER@$IPSTAGING "
+    #           sudo chown www-data:www-data -R /var/www/{{ cookiecutter.project_slug_dashed }}/database-data/ &&
+    #           sudo -u www-data bash -c '
+    #               cd /var/www/{{ cookiecutter.project_slug_dashed }} &&
+    #               git clean -f && git checkout main && git pull &&
+    #               docker-compose -f docker-compose-production.yml down &&
+    #               docker-compose -f docker-compose-production.yml up --build -d &&
+    #               docker exec {{ cookiecutter.project_slug_snaked }} python manage.py migrate &&
+    #               docker exec {{ cookiecutter.project_slug_snaked }} python manage.py collectstatic --no-input '"
+
 
 # Main circleci config for Job flow.
 workflows:
