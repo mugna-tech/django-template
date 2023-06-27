@@ -9,13 +9,13 @@ A Django template to jumpstart your Django projects using cookiecutter. [Cookiec
 - Supports latest `python` 3.11+
 - Latest `Django` 4.2+
 - [12-Factor](https://www.12factor.net/) based settings using [`django-environ`](https://github.com/joke2k/django-environ)
-- [`django-rest-framework`](https://github.com/encode/django-rest-framework) for building Web APIs
 - [`django-celery`](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html) for background and periodic tasks (**optional)
-- GraphQL like API using [`restql`](https://github.com/yezyilomo/django-restql)
 - Authentication via [`django-allauth`](https://github.com/pennersr/django-allauth)
-- Token Authentication using [`simplejwt`](https://github.com/jazzband/djangorestframework-simplejwt)
-- API Authentication Endpoints via [`dj-rest-auth`](https://github.com/iMerica/dj-rest-auth)
-- API documentation via [`drf-yasg`](https://github.com/axnsan12/drf-yasg)
+- [`django-rest-framework`](https://github.com/encode/django-rest-framework) for building Web APIs (**optional)
+- GraphQL like API using [`restql`](https://github.com/yezyilomo/django-restql) (**optional)
+- Token Authentication using [`simplejwt`](https://github.com/jazzband/djangorestframework-simplejwt) (**optional)
+- API Authentication Endpoints via [`dj-rest-auth`](https://github.com/iMerica/dj-rest-auth) (**optional)
+- API documentation via [`drf-yasg`](https://github.com/axnsan12/drf-yasg) (**optional)
 - Renders Django projects with 100% starting test [`coverage`](https://github.com/nedbat/coveragepy)
 - [`pytest`](https://pytest.org/) for unit tests
 - [`factory-boy`](https://github.com/FactoryBoy/factory_boy) for test fixtures

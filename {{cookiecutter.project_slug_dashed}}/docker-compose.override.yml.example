@@ -2,10 +2,6 @@ version: '3.6'
 
 services:
     web:
-{%- if cookiecutter.use_celery == "y" %}
-        command: bash -c "uvicorn mugna.asgi:application --host 0.0.0.0 --port 8000"
-{%- else %}
         command: bash -c "python manage.py runserver 0.0.0.0:8000"
-{%- endif %}
         environment:
             DEBUG: 'True' # This will be converted into a boolean value.

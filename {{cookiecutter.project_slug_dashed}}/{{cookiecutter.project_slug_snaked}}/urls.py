@@ -9,9 +9,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
+{%- if cookiecutter.use_drf == "y" %}
 
     path(
         "password/reset/confirm/<uidb64>/<token>/",
@@ -34,11 +36,13 @@ urlpatterns = [
             namespace="v1",
         ),
     ),
+{%- endif %}
 ]
 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+{%- if cookiecutter.use_drf == "y" %}
 
 
 # Swagger
@@ -58,6 +62,7 @@ schema_view = get_schema_view(
 urlpatterns += [
     path("api/docs/", schema_view.with_ui("swagger", cache_timeout=0), name="api_docs"),
 ]
+{%- endif %}
 
 
 admin.site.site_header = "{{ cookiecutter.project_name }}"

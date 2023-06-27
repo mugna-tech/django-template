@@ -3,5 +3,6 @@
     "project_slug_snaked": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "project_slug_dashed": "{{ cookiecutter.project_name.lower()|replace(' ', '-')|replace('.', '-')|trim() }}",
     "project_description": "A Mugna Project",
+    "use_drf": "y",
     "use_celery": "y"
 }

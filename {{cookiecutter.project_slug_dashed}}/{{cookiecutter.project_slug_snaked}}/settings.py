@@ -52,13 +52,17 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "django_celery_results",
 {%- endif %}
+{%- if cookiecutter.use_drf == "y" %}
     "corsheaders",
+{%- endif %}
     "django_extensions",
+{%- if cookiecutter.use_drf == "y" %}
     "drf_yasg",
     "dj_rest_auth",
     "dj_rest_auth.registration",
     "rest_framework",
     "rest_framework.authtoken",
+{%- endif %}
 ]
 
 LOCAL_APPS = [
@@ -229,17 +233,17 @@ LOGGING = {
 }
 
 
-# REST Framework
+# Email
 
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        # "rest_framework.authentication.BasicAuthentication",
-        # "rest_framework.authentication.TokenAuthentication",
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-}
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", None)
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", None)
+
+if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # Allauth
@@ -254,6 +258,20 @@ ACCOUNT_UNIQUE_EMAIL = True
 LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/"
 OLD_PASSWORD_FIELD_ENABLED = True
+{%- if cookiecutter.use_drf == "y" %}
+
+
+# REST Framework
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.BasicAuthentication",
+        # "rest_framework.authentication.TokenAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
 
 
 # REST Auth
@@ -280,26 +298,13 @@ SWAGGER_SETTINGS = {
 }
 
 
-# Email
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", None)
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", None)
-
-if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-
 # CORS
 
 CORS_ALLOWED_ORIGINS = env.list(
     "CORS_ALLOWED_ORIGINS",
     default=["http://127.0.0.1:3000", "http://localhost:3000"],
 )
-
+{%- endif %}
 {%- if cookiecutter.use_celery == "y" %}
 
 
