@@ -1,13 +1,16 @@
+{%- if cookiecutter.use_drf == "y" %}
 from allauth.account.views import confirm_email
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-
+{%- endif %}
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+{%- if cookiecutter.use_drf == "y" %}
 from django.views.generic import TemplateView
+{%- endif %}
 
 
 urlpatterns = [
