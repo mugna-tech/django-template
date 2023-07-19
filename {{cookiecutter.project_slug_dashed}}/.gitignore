@@ -200,3 +200,6 @@ poetry.toml
 # Docker
 docker-compose.override.yml
 database-data/
+
+# Server
+*.pem
