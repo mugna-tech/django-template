@@ -4,7 +4,7 @@ jobs:
   build-and-test:
     working_directory: ~/{{ cookiecutter.project_slug_snaked }}
     docker:
-      - image: python:3.11
+      - image: python:3.11.6
         environment:
           SECRET_KEY: Thi$IsMyT3$t$3cr3tK3y
       - image: postgres:14

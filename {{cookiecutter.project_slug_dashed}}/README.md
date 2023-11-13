@@ -11,7 +11,7 @@ To run this project in a Docker it is assumed you have a setup [Docker Compose](
 
 1. Open CLI and CD to project root.
 2. Clone this repo and `git clone git@github.com:mugna-tech/{{ cookiecutter.project_slug_dashed }}.git`
-3. Go to project folder where manage.py is located. 
+3. Go to project folder where manage.py is located.
 4. Execute `docker-compose up --build` This will build the docker container.
 5. `docker exec -it {{ cookiecutter.project_slug_snaked }}_web python manage.py migrate`
 6. `docker exec -it {{ cookiecutter.project_slug_snaked }}_web python manage.py createsuperuser`
@@ -22,7 +22,7 @@ You will only execute `docker-compose up --build` if you have changes in your Do
 **Docker Django Environments**
 1. To add or use different environment values copy `docker-compose.override.yml.example` and rename it to `docker-compose.override.yml`
 and change or add environment variables needed.
-2. Add a `.env` file in your project root. 
+2. Add a `.env` file in your project root.
 
 Any changes in the environment variable will need to re-execute the `docker-compose up`
 
@@ -41,7 +41,7 @@ docker exec -it {{ cookiecutter.project_slug_snaked }}_web python manage.py load
 
 **To copy site-packages installed by poetry from docker to your host machine**
 ```sh
-docker cp {{ cookiecutter.project_slug_snaked }}_web:/usr/local/lib/python3.11/site-packages <path where you want to store the copy>
+docker cp {{ cookiecutter.project_slug_snaked }}_web:/usr/local/lib/python3.11.6/site-packages <path where you want to store the copy>
 ```
 
 **DEBUG NOTES:**
@@ -55,18 +55,18 @@ docker restart {{ cookiecutter.project_slug_snaked }}_web
 
 ### Required Installations
 
-1. [Python 3.11](https://www.python.org/downloads/)  
+1. [Python 3.11.6](https://www.python.org/downloads/)
     On macOS (with Homebrew): `brew install python3`
-2. [Poetry 1.1.11](https://python-poetry.org/docs/#installation)  
+2. [Poetry 1.1.11](https://python-poetry.org/docs/#installation)
     `curl -sSL https://install.python-poetry.org | python3 -`
-3. [PostgreSQL 14.0](https://www.postgresql.org/download/)  
+3. [PostgreSQL 14.0](https://www.postgresql.org/download/)
     On macOS (with Homebrew): `brew install postgres`
 
 ### Install Requirements
 
-1. `poetry install`  
+1. `poetry install`
     This installs the libraries required for this project
-2. `pre-commit install` 
+2. `pre-commit install`
     This installs pre-commit hooks to enforce code style.
 
 ### Setup PostgreSQL Database
@@ -83,44 +83,44 @@ CREATE DATABASE {{ cookiecutter.project_slug_snaked }} owner {{ cookiecutter.pro
 ### Configure .env File
 
 1. Copy `.env.example` to `.env` and customize its values.
-2. `SECRET_KEY` should be a random string, you can generate a new one using the following command:  
+2. `SECRET_KEY` should be a random string, you can generate a new one using the following command:
     `python -c 'from secrets import token_urlsafe; print("SECRET_KEY=" + token_urlsafe(50))'`
 3. Set `DATABASE_URL` to `POSTGRES_URL=postgres://{{ cookiecutter.project_slug_snaked }}:{{ cookiecutter.project_slug_snaked }}@localhost/{{ cookiecutter.project_slug_snaked }}`.
 
 ### Setup DB Schema
 
-1. `./manage.py migrate`  
+1. `./manage.py migrate`
     This applies the migrations to your database
-2. `./manage.py createsuperuser`  
+2. `./manage.py createsuperuser`
     This creates your superuser account. Just follow the prompts.
 
 ## Running the App
 
-1. `poetry shell`  
-    If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug_snaked }}"-2wVcCnjv-py3.11)`.
+1. `poetry shell`
+    If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug_snaked }}"-2wVcCnjv-py3.11.6)`.
 2. `./manage.py runserver`
 
 {%- if cookiecutter.use_celery == "y" %}
 
-## Running the Celery Server  
+## Running the Celery Server
 
 1. Make sure you have a Redis server running on localhost with the default port (6379). More information on how to setup [here](https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/)
 2. Set the `CELERY_BROKER_URL` env var to `redis://localhost:6379/0`
-3. `celery -A {{ cookiecutter.project_slug_snaked }} worker -l info`  
+3. `celery -A {{ cookiecutter.project_slug_snaked }} worker -l info`
     This starts a Celery worker that will process the background tasks.
-4. `celery -A {{ cookiecutter.project_slug_snaked }} beat -l info`  
+4. `celery -A {{ cookiecutter.project_slug_snaked }} beat -l info`
     This starts the Celery beat scheduler that will trigger the periodic tasks.
 {%- endif %}
 
 ## Running the Tests
 
 1. `poetry shell`
-2. `pytest`  
+2. `pytest`
     Run `pytest --cov=. --cov-report term-missing` to also show coverage report.
 
 # FAQs
 
-1. Changing the `.env` file variables has no effect.  
-    Run `export $(grep -v '^#' .env | xargs -0)` to source the file  
-    or  
+1. Changing the `.env` file variables has no effect.
+    Run `export $(grep -v '^#' .env | xargs -0)` to source the file
+    or
     Exit shell and run `poetry shell` again to reload the env file
