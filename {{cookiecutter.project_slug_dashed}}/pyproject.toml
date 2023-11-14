@@ -23,7 +23,7 @@ djangorestframework-simplejwt = "^5.2.2"
 drf-yasg = "^1.21.6"
 Pillow = "^10.0.1"
 psycopg2-binary = "^2.9.6"
-uvicorn = "^0.20.0"
+uvicorn = "^0.24.0"
 whitenoise = "^6.5.0"
 
 [tool.poetry.dev-dependencies]
