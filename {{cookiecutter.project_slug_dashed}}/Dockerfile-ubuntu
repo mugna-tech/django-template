@@ -1,7 +1,7 @@
 # Note:
 # This Dockerfile is setup if ever production server will not use Docker setup.
 # You can also use the updated ubuntu version
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 WORKDIR /web
 
