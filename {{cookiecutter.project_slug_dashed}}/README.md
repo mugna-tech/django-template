@@ -41,7 +41,7 @@ docker exec -it {{ cookiecutter.project_slug_snaked }}_web python manage.py load
 
 **To copy site-packages installed by poetry from docker to your host machine**
 ```sh
-docker cp {{ cookiecutter.project_slug_snaked }}_web:/usr/local/lib/python3.11.6/site-packages <path where you want to store the copy>
+docker cp {{ cookiecutter.project_slug_snaked }}_web:/usr/local/lib/python3.11.5/site-packages <path where you want to store the copy>
 ```
 
 **DEBUG NOTES:**
@@ -55,7 +55,7 @@ docker restart {{ cookiecutter.project_slug_snaked }}_web
 
 ### Required Installations
 
-1. [Python 3.11.6](https://www.python.org/downloads/)
+1. [Python 3.11.5](https://www.python.org/downloads/)
     On macOS (with Homebrew): `brew install python3`
 2. [Poetry 1.1.11](https://python-poetry.org/docs/#installation)
     `curl -sSL https://install.python-poetry.org | python3 -`
@@ -97,7 +97,7 @@ CREATE DATABASE {{ cookiecutter.project_slug_snaked }} owner {{ cookiecutter.pro
 ## Running the App
 
 1. `poetry shell`
-    If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug_snaked }}"-2wVcCnjv-py3.11.6)`.
+    If it's activated you'll see the virtual environment name at the beginning of your prompt, something like `("{{ cookiecutter.project_slug_snaked }}"-2wVcCnjv-py3.11.5)`.
 2. `./manage.py runserver`
 
 {%- if cookiecutter.use_celery == "y" %}
