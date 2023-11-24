@@ -85,6 +85,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+{%- if cookiecutter.use_drf == "y" %}
+    "allauth.account.middleware.AccountMiddleware",
+{%- endif -%}
 ]
 
 ROOT_URLCONF = "{{ cookiecutter.project_slug_snaked }}.urls"
