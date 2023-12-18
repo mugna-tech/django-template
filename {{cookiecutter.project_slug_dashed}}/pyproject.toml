@@ -27,7 +27,7 @@ uvicorn = "^0.24.0"
 whitenoise = "^6.5.0"
 
 [tool.poetry.dev-dependencies]
-black = "^23.11"
+black = "^23.12"
 coverage = {version = "^7.0", extras = ["toml"]}
 django-coverage-plugin = "^3.0.0"
 factory-boy = "^3.2.1"
