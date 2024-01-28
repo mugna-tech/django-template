@@ -31,7 +31,7 @@ jobs:
         # NOTE: Dependent on the above commented code.
         # - save_cache:
         #     paths:
-        #       - "~/.cache/pypoetry/virtualenvs/*/lib/python3.11/site-packages"
+        #       - "~/.cache/pypoetry/virtualenvs/*/lib/python3.12/site-packages"
         #     key: be-dependencies-\{\{ checksum "poetry.lock" \}\}
 
         - run:

@@ -4,11 +4,9 @@ updates:
     directory: "/{{cookiecutter.project_slug_dashed}}"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
 
   # Dependabot should be able to pull all Dockerfiles as long as it starts with "dockerfile" (case-insensitive)
   - package-ecosystem: "docker"
     directory: "/{{cookiecutter.project_slug_dashed}}"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
